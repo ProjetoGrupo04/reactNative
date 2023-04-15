@@ -7,7 +7,7 @@ import CardEncontro from '../../../components/Cards/CardEncontro';
 
 export default function Encontros() {
     const navigation = useNavigation();
-    
+
     const encontros = [
         {
             id: 1,
@@ -72,21 +72,26 @@ export default function Encontros() {
     ]
 
     return (
-        <View>
+        <SafeAreaView nestedScrollEnabled={true} style={styles.container}>
             <FlatList
-                numColumns={3}
-                horizontal={false}
+                nestedScrollEnabled={false}
                 data={encontros}
                 keyExtractor={(item) => item.id}
                 renderItem={({ item }) => <CardEncontro data={item} />}
             />
-            {/* </ScrollView> */}
-        </View>
+        </SafeAreaView>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-    }
+        flex: 7,
+        backgroundColor: "#c2c2c2",
+    },
+    titulo: {
+        fontWeight: 'bold',
+        fontSize: 24,
+        color: "#092C4C",
+        marginLeft: 15
+    },
 })
