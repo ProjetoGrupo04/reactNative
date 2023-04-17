@@ -21,6 +21,7 @@
     "expo-document-picker": "~11.0.1",
     "expo-image-picker": "~14.0.2",
     "expo-status-bar": "~1.4.2",
+    "moment": "^2.29.4",
     "react": "18.1.0",
     "react-native": "0.70.5",
     "react-native-circular-progress-indicator": "^4.4.2",
