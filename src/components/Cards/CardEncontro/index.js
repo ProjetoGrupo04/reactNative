@@ -1,44 +1,44 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
-
 import { useNavigation } from '@react-navigation/native';
+import moment from 'moment';
+import 'moment/locale/pt-br';
+import React from 'react';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-function CardEncontro({ data }) {
+export default function CardEncontro({ data }) {
 
     const navigation = useNavigation();
 
     const id = data.id;
-    const name = data.descricao;
+    const observacao = data.descricao;
+    let diaSemana = moment(data.horaInicio).format('dddd')
+
+    function primeiraLetraMaiuscula(dia) {
+        return dia.substring(0, 1).toLocaleUpperCase() + dia.substring(1).toLocaleLowerCase();
+    }
 
     return (
-
         <View style={styles.container}>
             <View style={styles.timeline}>
-                <View style={[styles.parte2,styles.shadowProp]}>
+                {/* <View style={[styles.parte2,styles.shadowProp]}>
                     <Text style={styles.titulo}>{data.descricao}</Text>
                     <Text style={styles.titulo}>{data.data}</Text>
                     <Text style={styles.descricao}>{data.dia}</Text>
-                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('SituacoesAprendizagensScreem', { id, name })}>
+                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('SituacoesAprendizagensScreem', { id, observacao })}>
                         <Text style={styles.detalhes}>Detalhe do encontro</Text>
                     </TouchableOpacity>
+                </View> */}
+                <View style={styles.parte2}>
+                    <Text style={styles.titulo}>{primeiraLetraMaiuscula(diaSemana)}
+                        , {moment(data.horaInicio).format('L')}</Text>
+                    <Text style={styles.descricao}>{data.observacao}</Text>
+                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('SituacoesAprendizagensScreem', { id, observacao })}>
+                        <Text style={styles.detalhes}>Detalhes</Text>
+                    </TouchableOpacity>
                 </View>
-                {/* <View style={styles.parte2}>
-                       <Text style={styles.titulo}>{Moment(item.horaInicio).format('dddd')}
-                         , {Moment(item.horaInicio).format('L')}</Text>
-                       <Text style={styles.descricao}>{item.observacao}</Text>
-                       <Text style={styles.descricao}>Situação de aprendizagem</Text>
-                       <Text style={styles.descricao}>Objeto de aprendizagem</Text>
-                       <Text style={styles.descricao}>Atividade</Text>
-                       <TouchableOpacity style={styles.button}>
-                         <Text style={styles.detalhes}>Detalhe do encontro</Text>
-                       </TouchableOpacity>
-                     </View> */}
             </View>
         </View>
     );
 }
-
-export default CardEncontro;
 
 const styles = StyleSheet.create({
     container: {
