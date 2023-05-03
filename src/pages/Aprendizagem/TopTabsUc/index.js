@@ -9,6 +9,7 @@ import Encontros from '../Encontros';
 import Participantes from '../Participantes';
 import Competencia from '../Copetencia';
 import Notas from '../Notas';
+import DescricaoUC from '../DescricaoUC';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -27,7 +28,22 @@ function TopTabsUc() {
                 },
 
             }}
-        >
+        >   
+            <Tab.Screen
+                name="Descrição"
+                component={DescricaoUC}
+                options={{
+                    headerShown: false,
+                    tabBarShowLabel: false,
+                    tabBarIcon: ({ focused }) => (
+                        <Feather
+                            name="info"
+                            size={22}
+                            color={focused ? '#f8922c' : '#FFF'}
+                        />
+                    )
+                }}
+            />
             <Tab.Screen
                 name="Encontros"
                 component={Encontros}
