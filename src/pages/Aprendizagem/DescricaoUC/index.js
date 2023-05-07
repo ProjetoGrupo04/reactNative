@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, StatusBar } from 'react-native';
+import { View, Text, StyleSheet, StatusBar } from 'react-native';
 
 
 import { useNavigation } from '@react-navigation/native';
@@ -13,7 +13,7 @@ export default function DescricaoUC() {
         const fetchData = async () => {
             const resp = await fetch("http://academico3.rj.senac.br/api/PlanejamentoUC/FiltrarPlanejamentoUCByGrupoId/1");
             const data = await resp.json();
-            setUcDescription(data.grupo?.unidadeCurricular?.nome);
+            //setUcDescription(data.grupo?.unidadeCurricular?.nome);
             setData(data);
         };
 
@@ -25,6 +25,8 @@ export default function DescricaoUC() {
             <View style={styles.main}>
                 <Text style={{fontWeight:'bold', fontSize:24}}>Descrição</Text>
                 <Text style={{fontSize:18}}>{item?.descricao}</Text>
+                <Text style={{fontWeight:'bold', fontSize:24, marginTop:10}}>Professor </Text>
+                <Text style={{fontSize:18}}>{item?.grupo?.professor?.usuario?.nomeCompleto}</Text>
             </View>
         );
     }
